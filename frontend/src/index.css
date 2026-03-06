@@ -1,0 +1,79 @@
+:root {
+  --sd-primary: #1e3c72;       /* Deep professional blue */
+  --sd-primary-dark: #162c54;  /* Dark navy */
+  --sd-accent: #2193b0;        /* Light blue accent */
+  --sd-warm: #ff9800;
+  --sd-bg: #f4f8fb;
+  --sd-card: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Clean corporate background */
+  background: linear-gradient(180deg, #f4f8fb 0%, #e6f0f7 100%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas,
+    'Courier New', monospace;
+}
+
+a {
+  color: var(--sd-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Page entrance animation */
+@keyframes sd-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sd-page-section {
+  animation: sd-fade-up 0.35s ease-out;
+}
+
+/* Custom Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e3c72 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1e3c72, #2193b0);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #162c54, #2193b0);
+}
