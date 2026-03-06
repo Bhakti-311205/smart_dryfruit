@@ -20,7 +20,6 @@ import {
   ShoppingCart,
   ArrowBack,
   Inventory,
-  Star,
 } from "@mui/icons-material";
 import { getProducts } from "../api/productApi";
 import { getProductReviewsApi, createReviewApi } from "../api/reviewApi";
@@ -64,6 +63,7 @@ const ProductDetail = () => {
     };
     fetchProduct();
     fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchReviews = async () => {

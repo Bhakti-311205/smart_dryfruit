@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   Container,
   Typography,
   Grid,
@@ -20,7 +19,7 @@ const UserDashboard = () => {
   useEffect(() => {
     getUserOrdersApi()
       .then((res) => setOrders(res.data || []))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const totalSpent = orders.reduce(

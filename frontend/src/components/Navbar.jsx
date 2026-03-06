@@ -10,8 +10,6 @@ import {
   Box,
   Chip,
   Container,
-  IconButton,
-  Tooltip,
   Divider,
   Badge as MuiBadge,
 } from "@mui/material";
@@ -24,14 +22,12 @@ import {
   Favorite,
 } from "@mui/icons-material";
 
-import { useTheme } from "@mui/material/styles";
-
 const Navbar = () => {
   const { user, logout } = useAuth();
   const { cart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
-  const theme = useTheme();
+  const location = useLocation();
 
   const [elevated, setElevated] = useState(false);
 
