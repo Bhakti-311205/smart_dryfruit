@@ -24,6 +24,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { getStaffOrdersApi, updateOrderStatusApi } from "../api/orderApi";
+import PageNavigator from "../components/PageNavigator";
 
 const StaffOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -178,10 +179,10 @@ const StaffOrders = () => {
                       variant="outlined"
                       onClick={() => handleStatusUpdate(order)}
                       sx={{
-                        borderColor: "#1e3c72",
-                        color: "#1e3c72",
+                        borderColor: "#6B3E26",
+                        color: "#6B3E26",
                         "&:hover": {
-                          borderColor: "#162c54",
+                          borderColor: "#3E2723",
                           backgroundColor: "rgba(30,60,114,0.05)",
                         },
                       }}
@@ -225,14 +226,21 @@ const StaffOrders = () => {
             onClick={handleUpdateStatus}
             variant="contained"
             sx={{
-              bgcolor: "#1e3c72",
-              "&:hover": { bgcolor: "#162c54" },
+              bgcolor: "#6B3E26",
+              "&:hover": { bgcolor: "#3E2723" },
             }}
           >
             Update
           </Button>
         </DialogActions>
       </Dialog>
+
+      <PageNavigator
+        backTo="/staff"
+        backLabel="Back to Staff Dashboard"
+        nextTo="/"
+        nextLabel="Go to Home"
+      />
     </Container>
   );
 };

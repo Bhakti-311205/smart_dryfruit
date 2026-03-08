@@ -27,11 +27,11 @@ const ScrollToTop = () => {
                     bottom: 32,
                     right: 32,
                     zIndex: 1200,
-                    background: "linear-gradient(135deg, #1e3c72, #2193b0)",
+                    background: "linear-gradient(135deg, #6B3E26, #8BC34A)",
                     color: "white",
                     boxShadow: "0 4px 20px rgba(30,60,114,0.4)",
                     "&:hover": {
-                        background: "linear-gradient(135deg, #162c54, #1a7a94)",
+                        background: "linear-gradient(135deg, #3E2723, #1a7a94)",
                         transform: "scale(1.1)",
                     },
                     transition: "transform 0.2s ease",

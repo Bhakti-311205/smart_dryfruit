@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid, Link as MuiLink } from "@mui/material";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -12,16 +13,24 @@ const Footer = () => {
         mt: 6,
         py: 4,
         px: { xs: 3, md: 6 },
-        background: "linear-gradient(90deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
-        color: "white",
-        boxShadow: "0 -4px 18px rgba(0,0,0,0.3)",
+        background: "#3E2723",
+        color: "#EADBC8",
+        boxShadow: "0 -4px 18px rgba(0,0,0,0.15)",
+        "& a": {
+          transition: "color 0.2s ease"
+        },
+        "& a:hover": {
+          color: "#8BC34A",
+        }
       }}
     >
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
-          <Typography variant="h6" sx={{ fontWeight: 700, mb: 1 }}>
-            NutHub
-          </Typography>
+          <Box sx={{ mb: 1.5, display: 'inline-block' }}>
+            <Link to="/">
+              <Logo sx={{ height: 48, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.2))" }} />
+            </Link>
+          </Box>
           <Typography variant="body2" sx={{ opacity: 0.9, mb: 1.5 }}>
             Smart Dry Fruit Business Management System to manage products,
             orders, inventory and suppliers in one modern dashboard.

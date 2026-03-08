@@ -46,10 +46,11 @@ import {
 } from "recharts";
 import {
   getInventoryApi,
-  updateStockApi,
   getLowStockApi,
+  updateStockApi,
   getInventorySummaryApi,
 } from "../api/inventoryApi";
+import PageNavigator from "../components/PageNavigator";
 
 const UpdateStocks = () => {
   const [products, setProducts] = useState([]);
@@ -194,7 +195,7 @@ const UpdateStocks = () => {
             <Card>
               <CardContent>
                 <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <Inventory sx={{ fontSize: 40, color: "#1e3c72" }} />
+                  <Inventory sx={{ fontSize: 40, color: "#6B3E26" }} />
                   <Box>
                     <Typography variant="h4">
                       {summary.totalProducts}
@@ -279,8 +280,8 @@ const UpdateStocks = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="totalStock" name="Total Stock (Kg)" fill="#1e3c72" />
-                    <Bar dataKey="productCount" name="Products" fill="#2193b0" />
+                    <Bar dataKey="totalStock" name="Total Stock (Kg)" fill="#6B3E26" />
+                    <Bar dataKey="productCount" name="Products" fill="#8BC34A" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -327,7 +328,7 @@ const UpdateStocks = () => {
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="stock" name="Current Stock (Kg)" fill="#ff9800" />
-                    <Bar dataKey="min" name="Min Level (Kg)" fill="#1e3c72" />
+                    <Bar dataKey="min" name="Min Level (Kg)" fill="#6B3E26" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -379,8 +380,8 @@ const UpdateStocks = () => {
                           product.stock === 0
                             ? "error.main"
                             : product.stock <= product.minStockLevel
-                            ? "warning.main"
-                            : "text.primary",
+                              ? "warning.main"
+                              : "text.primary",
                       }}
                     >
                       {product.stock} Kg
@@ -400,10 +401,10 @@ const UpdateStocks = () => {
                       variant="outlined"
                       onClick={() => handleOpen(product)}
                       sx={{
-                        borderColor: "#1e3c72",
-                        color: "#1e3c72",
+                        borderColor: "#6B3E26",
+                        color: "#6B3E26",
                         "&:hover": {
-                          borderColor: "#162c54",
+                          borderColor: "#3E2723",
                           backgroundColor: "rgba(30,60,114,0.05)",
                         },
                       }}
@@ -477,14 +478,21 @@ const UpdateStocks = () => {
             onClick={handleSubmit}
             variant="contained"
             sx={{
-              bgcolor: "#1e3c72",
-              "&:hover": { bgcolor: "#162c54" },
+              bgcolor: "#6B3E26",
+              "&:hover": { bgcolor: "#3E2723" },
             }}
           >
             Update Stock
           </Button>
         </DialogActions>
       </Dialog>
+
+      <PageNavigator
+        backTo="/staff"
+        backLabel="Back to Staff Dashboard"
+        nextTo="/"
+        nextLabel="Go to Home"
+      />
     </Container>
   );
 };

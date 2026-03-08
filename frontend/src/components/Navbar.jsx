@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+import Logo from "./Logo";
 import {
   AppBar,
   Toolbar,
@@ -24,14 +25,14 @@ import {
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const { cart } = useCart();
+  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
-  const location = useLocation();
   const location = useLocation();
 
   const [elevated, setElevated] = useState(false);
 
   const handleLogout = () => {
+    if (clearCart) clearCart();
     logout();
     navigate("/login");
   };
@@ -110,31 +111,24 @@ const Navbar = () => {
             gap: 2,
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "baseline", gap: 1 }}>
-            <Typography
-              variant="h6"
-              component={Link}
-              to="/"
-              sx={{
-                color: "white",
-                fontWeight: "bold",
-                textDecoration: "none",
-                letterSpacing: 0.7,
-                transition: "transform 0.25s ease, opacity 0.25s ease",
-                "&:hover": { opacity: 0.9, transform: "translateY(-1px)" },
-              }}
-            >
-              NutHub
-            </Typography>
-            <Typography
-              variant="body2"
-              sx={{
-                color: "rgba(255,255,255,0.9)",
-                fontWeight: 500,
-              }}
-            >
-              – Dry Fruit Business Management System
-            </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+            <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Logo sx={{ mr: 1, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.2))" }} />
+              <Typography
+                variant="h6"
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                  letterSpacing: 0.7,
+                  transition: "transform 0.25s ease, opacity 0.25s ease",
+                  mr: 1,
+                  "&:hover": { opacity: 0.9, transform: "translateY(-1px)" },
+                }}
+              >
+                NutHub
+              </Typography>
+            </Link>
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>

@@ -1,27 +1,54 @@
 :root {
-  --sd-primary: #1e3c72;       /* Deep professional blue */
-  --sd-primary-dark: #162c54;  /* Dark navy */
-  --sd-accent: #2193b0;        /* Light blue accent */
+  --sd-primary: #6B3E26;
+  /* Walnut Brown */
+  --sd-primary-dark: #3E2723;
+  /* Cocoa Brown */
+  --sd-accent: #8BC34A;
+  /* Pistachio Green */
   --sd-warm: #ff9800;
-  --sd-bg: #f4f8fb;
-  --sd-card: #ffffff;
+  --sd-bg: #F3ECE3;
+  /* Cream Sand */
+  --sd-card: #EADBC8;
+  /* Almond Beige */
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+@keyframes background-animate {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Clean corporate background */
-  background: linear-gradient(180deg, #f4f8fb 0%, #e6f0f7 100%);
+  /* Warm professional background with subtle dryfruit texture */
+  background:
+    linear-gradient(rgba(243, 236, 227, 0.92), rgba(234, 219, 200, 0.92)),
+    url('https://www.transparenttextures.com/patterns/papyrus.png'),
+    /* subtle organic texture */
+    linear-gradient(-45deg, #F3ECE3, #EADBC8, #ffffff, #EADBC8);
+  background-size: 100% 100%, auto, 400% 400%;
+  animation: background-animate 20s ease infinite;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 code {
@@ -44,6 +71,7 @@ a:hover {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -57,7 +85,7 @@ a:hover {
 /* Custom Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #1e3c72 transparent;
+  scrollbar-color: #6B3E26 transparent;
 }
 
 *::-webkit-scrollbar {
@@ -70,10 +98,10 @@ a:hover {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #1e3c72, #2193b0);
+  background: linear-gradient(180deg, #6B3E26, #8BC34A);
   border-radius: 999px;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #162c54, #2193b0);
+  background: linear-gradient(180deg, #3E2723, #8BC34A);
 }

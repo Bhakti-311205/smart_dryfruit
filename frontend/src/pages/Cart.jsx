@@ -49,8 +49,8 @@ const Cart = () => {
             variant="contained"
             onClick={() => navigate("/products")}
             sx={{
-              bgcolor: "#1e3c72",
-              "&:hover": { bgcolor: "#162c54" },
+              bgcolor: "#6B3E26",
+              "&:hover": { bgcolor: "#3E2723" },
             }}
           >
             Browse Products
@@ -194,8 +194,7 @@ const Cart = () => {
               boxShadow: 3,
               position: "sticky",
               top: 20,
-              background:
-                "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(230,245,255,0.95))",
+              background: "rgba(234, 219, 200, 0.95)",
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 3 }}>
@@ -221,7 +220,7 @@ const Cart = () => {
                 </Typography>
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 700, color: "#1e3c72" }}
+                  sx={{ fontWeight: 700, color: "#6B3E26" }}
                 >
                   ₹{total.toFixed(2)}
                 </Typography>
@@ -235,12 +234,12 @@ const Cart = () => {
               endIcon={<ArrowForward />}
               onClick={() => navigate("/checkout")}
               sx={{
-                bgcolor: "#1e3c72",
+                bgcolor: "#6B3E26",
                 fontWeight: 600,
                 py: 1.5,
                 borderRadius: 2,
                 "&:hover": {
-                  bgcolor: "#162c54",
+                  bgcolor: "#3E2723",
                 },
               }}
             >

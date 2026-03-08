@@ -11,6 +11,7 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { getUserOrdersApi } from "../api/orderApi";
 import StatCard from "../components/StatCard";
+import PageNavigator from "../components/PageNavigator";
 
 const UserDashboard = () => {
   const { user } = useAuth();
@@ -35,7 +36,7 @@ const UserDashboard = () => {
           mb: 3,
           fontWeight: 700,
           background:
-            "linear-gradient(135deg, #1e3c72, #2193b0)",
+            "linear-gradient(135deg, #6B3E26, #8BC34A)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -70,7 +71,7 @@ const UserDashboard = () => {
           p: 3,
           borderRadius: 3,
           boxShadow: 4,
-          bgcolor: "#ffffff",
+          bgcolor: "rgba(234, 219, 200, 0.95)",
         }}
       >
         <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
@@ -94,6 +95,13 @@ const UserDashboard = () => {
           </Typography>
         )}
       </Paper>
+
+      <PageNavigator
+        backTo="/"
+        backLabel="Back to Home"
+        nextTo="/products"
+        nextLabel="Shop Now"
+      />
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Box, Typography, Grid, Paper } from "@mui/material";
 import PageNavigator from "../components/PageNavigator";
+import Logo from "../components/Logo";
 
 const About = () => {
   return (
@@ -11,17 +12,17 @@ const About = () => {
           sx={{
             fontWeight: 800,
             mb: 3,
-            background:
-              "linear-gradient(135deg, #1e3c72 0%, #2193b0 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            color: "#6B3E26",
           }}
         >
-          About NutHub
+          About <Logo sx={{ height: { xs: 32, md: 40 } }} />
         </Typography>
 
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          NutHub – Dry Fruit Business Management System is a smart platform
+        <Typography variant="body1" color="text.secondary" sx={{ mb: 4, display: "flex", alignItems: "center", flexWrap: "wrap" }}>
+          <Logo sx={{ height: 22, mr: 1 }} /> – Dry Fruit Business Management System is a smart platform
           designed to manage premium dry fruit inventory, orders, suppliers and
           customers in one place. It is built for modern wholesale and retail
           dry fruit businesses.
@@ -34,11 +35,11 @@ const About = () => {
                 p: 3,
                 borderRadius: 3,
                 boxShadow: 3,
-                bgcolor: "#ffffff",
+                bgcolor: "rgba(234, 219, 200, 0.95)",
               }}
             >
-              <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-                What NutHub Manages
+              <Typography variant="h6" sx={{ fontWeight: 700, mb: 2, display: "flex", alignItems: "center" }}>
+                What <Logo sx={{ height: 24, mx: 1 }} /> Manages
               </Typography>
 
               <Typography variant="body2" color="text.secondary">
@@ -61,7 +62,7 @@ const About = () => {
                 p: 3,
                 borderRadius: 3,
                 boxShadow: 3,
-                bgcolor: "#ffffff",
+                bgcolor: "rgba(234, 219, 200, 0.95)",
               }}
             >
               <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>

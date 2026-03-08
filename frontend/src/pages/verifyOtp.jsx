@@ -106,7 +106,7 @@ const VerifyOtp = () => {
             mb: 2,
             fontWeight: 700,
             background:
-              "linear-gradient(135deg, #1e3c72, #2193b0)",
+              "linear-gradient(135deg, #6B3E26, #8BC34A)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -150,11 +150,11 @@ const VerifyOtp = () => {
               py: 1.2,
               fontWeight: 600,
               background:
-                "linear-gradient(90deg, #1e3c72, #2193b0)",
+                "linear-gradient(90deg, #6B3E26, #8BC34A)",
               boxShadow: "0 6px 18px rgba(33,147,176,0.4)",
               "&:hover": {
                 background:
-                  "linear-gradient(90deg, #162c54, #1e88a8)",
+                  "linear-gradient(90deg, #3E2723, #1e88a8)",
               },
             }}
           >
@@ -170,7 +170,7 @@ const VerifyOtp = () => {
               mt: 1.5,
               textTransform: "none",
               fontWeight: 500,
-              color: resendCooldown > 0 ? "text.disabled" : "#1e3c72",
+              color: resendCooldown > 0 ? "text.disabled" : "#6B3E26",
             }}
           >
             {resending

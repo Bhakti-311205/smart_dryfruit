@@ -170,7 +170,7 @@ const Payment = () => {
           contact: shippingDetails.phone,
         },
         theme: {
-          color: "#1e3c72",
+          color: "#6B3E26",
         },
       };
 
@@ -220,7 +220,7 @@ const Payment = () => {
                   key={method.value}
                   sx={{
                     mb: 2,
-                    border: paymentMethod === method.value ? "2px solid #1e3c72" : "1px solid #ddd",
+                    border: paymentMethod === method.value ? "2px solid #6B3E26" : "1px solid #ddd",
                     cursor: "pointer",
                     transition: "all 0.2s",
                     "&:hover": { boxShadow: 3 },
@@ -254,7 +254,7 @@ const Payment = () => {
               }}
             >
               <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                Total Amount: <span style={{ color: "#1e3c72", fontSize: "1.2em" }}>₹{total.toFixed(2)}</span>
+                Total Amount: <span style={{ color: "#6B3E26", fontSize: "1.2em" }}>₹{total.toFixed(2)}</span>
               </Typography>
             </Paper>
           </Box>
@@ -303,7 +303,7 @@ const Payment = () => {
             >
               {orderId && (
                 <Typography variant="body1" sx={{ fontWeight: 600, mb: 1 }}>
-                  Order ID: <span style={{ color: "#1e3c72" }}>#{orderId.slice(-8).toUpperCase()}</span>
+                  Order ID: <span style={{ color: "#6B3E26" }}>#{orderId.slice(-8).toUpperCase()}</span>
                 </Typography>
               )}
               <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
@@ -327,9 +327,9 @@ const Payment = () => {
                   py: 1.3,
                   fontWeight: 600,
                   borderRadius: 2,
-                  background: "linear-gradient(90deg, #1e3c72, #2193b0)",
+                  background: "linear-gradient(90deg, #6B3E26, #8BC34A)",
                   boxShadow: "0 6px 18px rgba(33,147,176,0.4)",
-                  "&:hover": { background: "linear-gradient(90deg, #162c54, #1e88a8)" },
+                  "&:hover": { background: "linear-gradient(90deg, #3E2723, #1e88a8)" },
                 }}
               >
                 View My Orders
@@ -343,9 +343,9 @@ const Payment = () => {
                   py: 1.3,
                   fontWeight: 600,
                   borderRadius: 2,
-                  borderColor: "#1e3c72",
-                  color: "#1e3c72",
-                  "&:hover": { borderColor: "#162c54", bgcolor: "rgba(30,60,114,0.04)" },
+                  borderColor: "#6B3E26",
+                  color: "#6B3E26",
+                  "&:hover": { borderColor: "#3E2723", bgcolor: "rgba(30,60,114,0.04)" },
                 }}
               >
                 Continue Shopping
@@ -396,8 +396,8 @@ const Payment = () => {
               onClick={handleNext}
               disabled={processing}
               sx={{
-                bgcolor: "#1e3c72",
-                "&:hover": { bgcolor: "#162c54" },
+                bgcolor: "#6B3E26",
+                "&:hover": { bgcolor: "#3E2723" },
               }}
             >
               {processing ? (

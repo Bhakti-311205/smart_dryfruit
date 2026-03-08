@@ -14,6 +14,7 @@ import {
   CircularProgress,
   Alert,
 } from "@mui/material";
+import PageNavigator from "../components/PageNavigator";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -53,7 +54,7 @@ const ManageProducts = () => {
         sx={{
           fontWeight: 800,
           mb: 4,
-          color: "#1e3c72",
+          color: "#6B3E26",
         }}
       >
         Manage Products
@@ -100,7 +101,7 @@ const ManageProducts = () => {
                 <TableCell
                   sx={{
                     fontWeight: 600,
-                    color: "#1e3c72",
+                    color: "#6B3E26",
                   }}
                 >
                   ₹ {p.pricePerKg}
@@ -114,15 +115,15 @@ const ManageProducts = () => {
                       p.stock === 0
                         ? "Out of Stock"
                         : p.stock <= 10
-                        ? "Low Stock"
-                        : "In Stock"
+                          ? "Low Stock"
+                          : "In Stock"
                     }
                     color={
                       p.stock === 0
                         ? "error"
                         : p.stock <= 10
-                        ? "warning"
-                        : "success"
+                          ? "warning"
+                          : "success"
                     }
                     size="small"
                   />
@@ -132,6 +133,13 @@ const ManageProducts = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <PageNavigator
+        backTo="/admin"
+        backLabel="Back to Admin Dashboard"
+        nextTo="/admin/add-product"
+        nextLabel="Add Product"
+      />
     </Container>
   );
 };

@@ -82,7 +82,7 @@ const Login = () => {
           borderRadius: 3,
           boxShadow: 6,
           background:
-            "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(230,245,255,0.95))",
+            "rgba(234, 219, 200, 0.95)",
         }}
       >
         <Typography
@@ -91,7 +91,7 @@ const Login = () => {
             mb: 2,
             fontWeight: 700,
             background:
-              "linear-gradient(135deg, #1e3c72, #2193b0)",
+              "linear-gradient(135deg, #6B3E26, #8BC34A)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -218,11 +218,11 @@ const Login = () => {
               py: 1.2,
               fontWeight: 600,
               background:
-                "linear-gradient(90deg, #1e3c72, #2193b0)",
-              boxShadow: "0 6px 18px rgba(33,147,176,0.4)",
+                "linear-gradient(90deg, #6B3E26, #8BC34A)",
+              boxShadow: "0 6px 18px rgba(107,62,38,0.4)",
               "&:hover": {
                 background:
-                  "linear-gradient(90deg, #162c54, #1e88a8)",
+                  "linear-gradient(90deg, #3E2723, #6B3E26)",
               },
             }}
           >

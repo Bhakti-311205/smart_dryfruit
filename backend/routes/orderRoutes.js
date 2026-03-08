@@ -390,7 +390,7 @@ router.get("/:id/invoice", protect, async (req, res) => {
 
     order.items.forEach((item) => {
       doc.text(
-        `${item.product_name} - ${item.quantity} Kg x ₹${item.pricePerKg} = ₹${item.totalPrice.toFixed(
+        `${item.product_name} - ${item.quantity} Kg x Rs.${item.pricePerKg} = Rs.${item.totalPrice.toFixed(
           2
         )}`
       );
@@ -399,7 +399,7 @@ router.get("/:id/invoice", protect, async (req, res) => {
     doc.moveDown();
     doc
       .fontSize(14)
-      .text(`Total Amount: ₹${order.totalAmount.toFixed(2)}`, { align: "right" })
+      .text(`Total Amount: Rs.${order.totalAmount.toFixed(2)}`, { align: "right" })
       .moveDown();
 
     doc

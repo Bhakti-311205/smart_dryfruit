@@ -11,43 +11,104 @@ import {
 import { Link } from "react-router-dom";
 import { FormatQuote } from "@mui/icons-material";
 import StatCard from "../components/StatCard";
+import Logo from "../components/Logo";
 
 const Home = () => {
   return (
     <Box>
+      {/* floating fruit/leaf elements for interactivity */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+          zIndex: 1,
+          overflow: "hidden",
+        }}
+      >
+        {[...Array(6)].map((_, i) => (
+          <Box
+            key={i}
+            sx={{
+              position: "absolute",
+              width: i % 2 === 0 ? 40 : 60,
+              height: i % 2 === 0 ? 40 : 60,
+              background: i % 3 === 0
+                ? "rgba(139, 195, 74, 0.15)"
+                : i % 3 === 1
+                  ? "rgba(107, 62, 38, 0.15)"
+                  : "rgba(215, 165, 120, 0.2)",
+              borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              filter: "blur(2px)",
+              animation: `float ${10 + Math.random() * 20}s linear infinite`,
+              "@keyframes float": {
+                "0%": { transform: "translateY(0) rotate(0deg)", opacity: 0 },
+                "10%": { opacity: 1 },
+                "90%": { opacity: 1 },
+                "100%": { transform: "translateY(-100vh) rotate(360deg)", opacity: 0 },
+              }
+            }}
+          />
+        ))}
+      </Box>
+
       {/* ================= HERO SECTION ================= */}
       <Box
         sx={{
           py: { xs: 8, md: 12 },
-          minHeight: "75vh",
+          minHeight: "85vh",
           display: "flex",
           alignItems: "center",
           position: "relative",
           overflow: "hidden",
           color: "white",
           backgroundImage:
-            "linear-gradient(135deg, rgba(15,32,39,0.9) 0%, rgba(32,58,67,0.92) 45%, rgba(44,83,100,0.95) 100%), url('https://images.pexels.com/photos/4109942/pexels-photo-4109942.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+            "linear-gradient(135deg, rgba(62,39,35,0.85) 0%, rgba(107,62,38,0.88) 45%, rgba(32,20,18,0.92) 100%), url('https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=1600')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           boxShadow: "inset 0 0 120px rgba(0,0,0,0.55)",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.4) 100%)",
+            zIndex: 0,
+          }
         }}
       >
-        <Container>
+        <Container sx={{ position: "relative", zIndex: 2 }}>
           <Grid container spacing={4} alignItems="center">
             {/* LEFT CONTENT */}
             <Grid item xs={12} md={7}>
+              <Box sx={{ mb: { xs: 2, md: 3 }, animation: "fadeInUp 0.8s ease-out" }}>
+                <Logo sx={{ height: { xs: 50, md: 70 }, filter: "drop-shadow(0px 4px 8px rgba(0,0,0,0.5))" }} />
+              </Box>
               <Typography
                 variant="h2"
                 sx={{
                   fontWeight: 900,
                   mb: 2,
-                  fontSize: { xs: "2.2rem", md: "3.5rem" },
-                  lineHeight: 1.2,
+                  fontSize: { xs: "2.5rem", md: "4rem" },
+                  lineHeight: 1.1,
                   letterSpacing: "1px",
-                  textShadow: "0px 4px 20px rgba(0,0,0,0.4)",
+                  textShadow: "0px 10px 30px rgba(0,0,0,0.5)",
+                  animation: "fadeInUp 0.8s ease-out",
+                  "@keyframes fadeInUp": {
+                    from: { opacity: 0, transform: "translateY(30px)" },
+                    to: { opacity: 1, transform: "translateY(0)" }
+                  }
                 }}
               >
-                NutHub – Dry Fruit Business
+                NutHub Premium <br />
+                <span style={{ color: "#8BC34A" }}>Dry Fruits</span>
               </Typography>
 
               <Typography
@@ -57,47 +118,47 @@ const Home = () => {
                   mb: 3,
                   fontSize: { xs: "1.3rem", md: "1.9rem" },
                   textShadow: "0px 2px 10px rgba(0,0,0,0.3)",
+                  opacity: 0.9,
+                  animation: "fadeInUp 0.8s ease-out 0.2s both",
                 }}
               >
-                Management System
+                Nature's Best, Delivered to You
               </Typography>
 
               <Typography
                 variant="h6"
                 sx={{
-                  mb: 4,
-                  opacity: 0.97,
-                  fontSize: { xs: "0.95rem", md: "1.1rem" },
+                  mb: 5,
+                  opacity: 0.85,
+                  fontSize: { xs: "1rem", md: "1.2rem" },
                   lineHeight: 1.8,
+                  maxWidth: "600px",
+                  animation: "fadeInUp 0.8s ease-out 0.4s both",
                 }}
               >
-                Manage premium dry fruit inventory, customer orders, staff and
-                suppliers in one smart dashboard. NutHub helps wholesalers,
-                retailers and students demonstrate a complete dry‑fruit
-                business workflow – from browsing products to final invoice.
+                Experience the finest selection of handpicked nuts and dried fruits.
+                Our smart management system ensures freshness from the farm
+                to your doorstep. Elegant. Fresh. Healthy.
               </Typography>
 
-              <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <Box sx={{
+                display: "flex",
+                gap: 3,
+                flexWrap: "wrap",
+                animation: "fadeInUp 0.8s ease-out 0.6s both",
+              }}>
                 <Button
                   variant="contained"
                   size="large"
                   component={Link}
                   to="/products"
                   sx={{
-                    px: 4,
-                    py: 1.5,
+                    px: 6,
+                    py: 2,
                     fontSize: "1.1rem",
-                    fontWeight: 600,
-                    borderRadius: 3,
-                    background: "linear-gradient(45deg, #2193b0, #6dd5ed)",
-                    boxShadow: "0 8px 25px rgba(0,0,0,0.3)",
-                    "&:hover": {
-                      transform: "translateY(-3px)",
-                      boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
-                    },
                   }}
                 >
-                  Shop Now
+                  Shop Best-Sellers
                 </Button>
 
                 <Button
@@ -106,54 +167,58 @@ const Home = () => {
                   component={Link}
                   to="/products"
                   sx={{
-                    px: 4,
-                    py: 1.5,
+                    px: 5,
+                    py: 2,
                     fontSize: "1.1rem",
-                    fontWeight: 600,
-                    borderRadius: 3,
-                    borderColor: "#6dd5ed",
-                    color: "#ffffff",
-                    borderWidth: 2,
+                    borderColor: "white",
+                    color: "white",
                     "&:hover": {
-                      borderWidth: 2,
-                      bgcolor: "rgba(255,255,255,0.1)",
-                    },
+                      borderColor: "#8BC34A",
+                      color: "#8BC34A",
+                      backgroundColor: "rgba(255,255,255,0.05)",
+                    }
                   }}
                 >
-                  Browse Products
+                  Browse Collection
                 </Button>
               </Box>
             </Grid>
 
             {/* RIGHT STAT CARDS */}
-            <Grid item xs={12} md={5}>
-              <Grid container spacing={2}>
+            <Grid item xs={12} md={5} sx={{
+              animation: "fadeInRight 1s ease-out 0.8s both",
+              "@keyframes fadeInRight": {
+                from: { opacity: 0, transform: "translateX(50px)" },
+                to: { opacity: 1, transform: "translateX(0)" }
+              }
+            }}>
+              <Grid container spacing={2.5}>
                 <Grid item xs={6}>
                   <StatCard
-                    label="Premium Quality"
+                    label="Grade A Quality"
                     value="100%"
-                    subtext="Certified products"
+                    subtext="Handpicked Selection"
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <StatCard
-                    label="Happy Customers"
-                    value="500+"
-                    subtext="Satisfied buyers"
+                    label="Happy Clients"
+                    value="5000+"
+                    subtext="Across the Globe"
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <StatCard
-                    label="Products"
-                    value="50+"
-                    subtext="Varieties available"
+                    label="Exotic Varieties"
+                    value="120+"
+                    subtext="Sourced Locally"
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <StatCard
-                    label="Fast Delivery"
-                    value="24hrs"
-                    subtext="Quick shipping"
+                    label="Express Delivery"
+                    value="🚀"
+                    subtext="Same Day Shipping"
                   />
                 </Grid>
               </Grid>
@@ -165,13 +230,14 @@ const Home = () => {
         <Box
           sx={{
             position: "absolute",
-            top: "-100px",
-            right: "-100px",
-            width: 300,
-            height: 300,
-            background: "rgba(0, 183, 255, 0.25)",
+            top: "10%",
+            right: "-5%",
+            width: 500,
+            height: 500,
+            background: "radial-gradient(circle, rgba(139,195,74,0.15) 0%, transparent 70%)",
             borderRadius: "50%",
-            filter: "blur(120px)",
+            filter: "blur(60px)",
+            zIndex: 1,
           }}
         />
 
@@ -179,30 +245,29 @@ const Home = () => {
         <Box
           sx={{
             position: "absolute",
-            bottom: 30,
-            right: 40,
+            bottom: 40,
+            right: { xs: 20, md: 60 },
+            zIndex: 10,
           }}
         >
           <Button
+            variant="contained"
             component={Link}
             to="/products"
             sx={{
               px: 4,
-              py: 1.3,
-              fontSize: "1rem",
-              fontWeight: 700,
-              borderRadius: 4,
-              color: "#fff",
-              background: "linear-gradient(45deg, #2193b0, #6dd5ed)",
-              boxShadow: "0 8px 25px rgba(0,0,0,0.3)",
-              transition: "0.3s",
+              py: 1.5,
+              background: "rgba(255,255,255,0.1)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.2)",
+              color: "white",
               "&:hover": {
-                transform: "translateY(-4px)",
-                boxShadow: "0 12px 30px rgba(0,0,0,0.4)",
-              },
+                background: "rgba(255,255,255,0.2)",
+                transform: "translateX(10px)",
+              }
             }}
           >
-            NEXT →
+            EXPLORE CATALOG →
           </Button>
         </Box>
       </Box>
@@ -215,10 +280,14 @@ const Home = () => {
             textAlign: "center",
             fontWeight: 700,
             mb: 6,
-            color: "#203a43",
+            color: "#3E2723",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 2
           }}
         >
-          Why Choose NutHub?
+          Why Choose <Logo sx={{ height: 42, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.1))" }} /> NutHub?
         </Typography>
 
         <Grid container spacing={4}>
@@ -253,7 +322,7 @@ const Home = () => {
               >
                 <Typography
                   variant="h5"
-                  sx={{ fontWeight: 600, mb: 2, color: "#203a43" }}
+                  sx={{ fontWeight: 600, mb: 2, color: "#3E2723" }}
                 >
                   {item.title}
                 </Typography>
@@ -275,13 +344,13 @@ const Home = () => {
               sx={{
                 fontWeight: 700,
                 mb: 2,
-                color: "#203a43",
+                color: "#3E2723",
               }}
             >
               Built for Real Dry‑Fruit Workflows
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-              NutHub covers all the key modules you typically describe in a
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+              <Logo sx={{ height: 20, mr: 1 }} /> NutHub covers all the key modules you typically describe in a
               project report or demo:
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -322,7 +391,7 @@ const Home = () => {
       <Box
         sx={{
           py: 8,
-          background: "linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)",
+          background: "linear-gradient(135deg, #F3ECE3 0%, #EADBC8 100%)",
         }}
       >
         <Container>
@@ -332,7 +401,7 @@ const Home = () => {
               textAlign: "center",
               fontWeight: 700,
               mb: 2,
-              color: "#203a43",
+              color: "#3E2723",
             }}
           >
             What Our Customers Say
@@ -386,7 +455,7 @@ const Home = () => {
                   <FormatQuote
                     sx={{
                       fontSize: 40,
-                      color: "#2193b0",
+                      color: "#8BC34A",
                       opacity: 0.3,
                       mb: 1,
                     }}
@@ -407,7 +476,7 @@ const Home = () => {
                   >
                     <Avatar
                       sx={{
-                        bgcolor: "#1e3c72",
+                        bgcolor: "#6B3E26",
                         width: 40,
                         height: 40,
                         fontWeight: 700,

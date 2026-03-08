@@ -30,7 +30,7 @@ const Offers = () => {
             fontWeight: 800,
             mb: 3,
             background:
-              "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+              "linear-gradient(135deg, #6B3E26 0%, #8BC34A 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -50,7 +50,7 @@ const Offers = () => {
                   p: 3,
                   borderRadius: 3,
                   boxShadow: 3,
-                  bgcolor: "rgba(255,255,255,0.96)",
+                  bgcolor: "rgba(234, 219, 200, 0.95)",
                   height: "100%",
                 }}
               >

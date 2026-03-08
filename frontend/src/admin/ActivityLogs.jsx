@@ -20,6 +20,7 @@ import {
     Button,
 } from "@mui/material";
 import { getActivityLogsApi } from "../api/activityLogApi";
+import PageNavigator from "../components/PageNavigator";
 
 const ACTION_COLORS = {
     LOGIN: "info",
@@ -100,7 +101,7 @@ const ActivityLogs = () => {
                 sx={{
                     fontWeight: 800,
                     mb: 4,
-                    background: "linear-gradient(135deg, #1e3c72, #2193b0)",
+                    background: "linear-gradient(135deg, #6B3E26, #8BC34A)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                 }}
@@ -221,6 +222,13 @@ const ActivityLogs = () => {
                     </Button>
                 </Box>
             )}
+
+            <PageNavigator
+                backTo="/admin"
+                backLabel="Back to Admin Dashboard"
+                nextTo="/admin/bulk-orders"
+                nextLabel="Go to Bulk Orders"
+            />
         </Container>
     );
 };

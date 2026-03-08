@@ -30,10 +30,15 @@ import {
 } from "@mui/icons-material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 import { useTheme } from "@mui/material/styles";
 
+import Footer from "../components/Footer";
+import Logo from "../components/Logo";
+
 const DRAWER_WIDTH = 280;
+// ... (rest of the code remains the same until return)
 
 function navForRole(role) {
   if (role === "admin") {
@@ -67,6 +72,7 @@ function navForRole(role) {
 
 const DashboardLayout = ({ role, title, children }) => {
   const { user, logout } = useAuth();
+  const { clearCart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
@@ -78,15 +84,18 @@ const DashboardLayout = ({ role, title, children }) => {
   const drawer = (
     <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
       <Box sx={{ px: 2.5, py: 2.5 }}>
-        <Typography variant="h6" sx={{ fontWeight: 800 }}>
-          NutHub ERP
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Box component={Link} to="/" sx={{ textDecoration: 'none', display: 'flex', alignItems: 'center', mb: 0.5 }}>
+          <Logo sx={{ height: 36, filter: "drop-shadow(0px 2px 4px rgba(0,0,0,0.2))" }} />
+          <Typography variant="h6" sx={{ fontWeight: 800, color: '#EADBC8', ml: 1.5 }}>
+            NutHub
+          </Typography>
+        </Box>
+        <Typography variant="body2" sx={{ color: "rgba(234,219,200,0.7)" }}>
           {role?.toUpperCase()} Console
         </Typography>
       </Box>
 
-      <Divider />
+      <Divider sx={{ borderColor: "rgba(234,219,200,0.15)" }} />
 
       <List sx={{ px: 1.25, py: 1 }}>
         {items.map((item) => {
@@ -101,12 +110,19 @@ const DashboardLayout = ({ role, title, children }) => {
                 borderRadius: 2,
                 mx: 0.75,
                 mb: 0.5,
+                color: active ? "#8BC34A" : "inherit",
+                "&:hover": {
+                  bgcolor: "#5A3521",
+                },
                 ...(active && {
-                  bgcolor: "rgba(30,60,114,0.06)",
+                  bgcolor: "#6B3E26",
+                  borderLeft: "4px solid #8BC34A",
+                  borderRadius: "0 8px 8px 0",
+                  ml: 0,
                 }),
               }}
             >
-              <ListItemIcon sx={{ minWidth: 42 }}>{item.icon}</ListItemIcon>
+              <ListItemIcon sx={{ minWidth: 42, color: active ? "#8BC34A" : "inherit" }}>{item.icon}</ListItemIcon>
               <ListItemText
                 primary={item.label}
                 primaryTypographyProps={{ fontWeight: active ? 700 : 600 }}
@@ -118,24 +134,27 @@ const DashboardLayout = ({ role, title, children }) => {
 
       <Box sx={{ flex: 1 }} />
 
-      <Divider />
+      <Divider sx={{ borderColor: "rgba(234,219,200,0.15)" }} />
 
       <Box sx={{ px: 2.5, py: 2, display: "flex", gap: 1, alignItems: "center" }}>
         <Chip
           label={user?.name ? `${user.name} (${user.role})` : role}
           size="small"
-          sx={{ maxWidth: 200 }}
+          sx={{ maxWidth: 200, bgcolor: "rgba(234,219,200,0.15)", color: "#EADBC8", fontWeight: 600 }}
         />
         <Box sx={{ flex: 1 }} />
 
         <IconButton
           onClick={() => {
+            if (clearCart) clearCart();
             logout();
             navigate("/login");
           }}
           sx={{
             borderRadius: 2,
-            border: `1px solid ${theme.palette.divider}`,
+            border: `1px solid rgba(234,219,200,0.2)`,
+            color: "inherit",
+            "&:hover": { bgcolor: "rgba(234,219,200,0.1)" }
           }}
         >
           <Logout />
@@ -149,7 +168,11 @@ const DashboardLayout = ({ role, title, children }) => {
       <AppBar
         position="fixed"
         sx={{
-          zIndex: (t) => t.zIndex.drawer + 1,
+          width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+          ml: { md: `${DRAWER_WIDTH}px` },
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          boxShadow: "none",
+          borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
         }}
       >
         <Toolbar>
@@ -161,7 +184,7 @@ const DashboardLayout = ({ role, title, children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" sx={{ fontWeight: 800 }}>
+          <Typography variant="h6" sx={{ fontWeight: 800, color: "inherit" }}>
             {title || "Dashboard"}
           </Typography>
         </Toolbar>
@@ -180,6 +203,9 @@ const DashboardLayout = ({ role, title, children }) => {
             display: { xs: "block", md: "none" },
             "& .MuiDrawer-paper": {
               width: DRAWER_WIDTH,
+              boxSizing: "border-box",
+              bgcolor: "#3E2723",
+              color: "#EADBC8",
             },
           }}
         >
@@ -193,6 +219,9 @@ const DashboardLayout = ({ role, title, children }) => {
             "& .MuiDrawer-paper": {
               width: DRAWER_WIDTH,
               boxSizing: "border-box",
+              borderRight: `1px solid rgba(107,62,38,0.15)`,
+              bgcolor: "#3E2723",
+              color: "#EADBC8",
             },
           }}
           open
@@ -201,11 +230,21 @@ const DashboardLayout = ({ role, title, children }) => {
         </Drawer>
       </Box>
 
-      <Box component="main" sx={{ flexGrow: 1, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` } }}>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          width: { md: `calc(100% - ${DRAWER_WIDTH}px)` },
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Toolbar />
-        <Container maxWidth="xl" sx={{ py: 3 }}>
+        <Container maxWidth="xl" sx={{ py: 4, flexGrow: 1 }}>
           {children}
         </Container>
+        <Footer />
       </Box>
     </Box>
   );

@@ -232,7 +232,7 @@ const ProductDetail = () => {
                 variant="h3"
                 sx={{
                   fontWeight: 800,
-                  color: "#1e3c72",
+                  color: "#6B3E26",
                 }}
               >
                 ₹{product.pricePerKg}
@@ -285,13 +285,13 @@ const ProductDetail = () => {
               onClick={handleAddToCart}
               disabled={product.stock === 0}
               sx={{
-                bgcolor: "#1e3c72",
+                bgcolor: "#6B3E26",
                 fontWeight: 600,
                 py: 1.5,
                 borderRadius: 2,
                 fontSize: "1.1rem",
                 "&:hover": {
-                  bgcolor: "#162c54",
+                  bgcolor: "#3E2723",
                 },
                 "&:disabled": {
                   bgcolor: "#ccc",
@@ -338,7 +338,7 @@ const ProductDetail = () => {
                 }}
               >
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-                  <Avatar sx={{ width: 32, height: 32, bgcolor: "#1e3c72", fontSize: 14 }}>
+                  <Avatar sx={{ width: 32, height: 32, bgcolor: "#6B3E26", fontSize: 14 }}>
                     {review.user?.name?.charAt(0)?.toUpperCase() || "U"}
                   </Avatar>
                   <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
@@ -396,8 +396,8 @@ const ProductDetail = () => {
               variant="contained"
               onClick={handleSubmitReview}
               sx={{
-                bgcolor: "#1e3c72",
-                "&:hover": { bgcolor: "#162c54" },
+                bgcolor: "#6B3E26",
+                "&:hover": { bgcolor: "#3E2723" },
               }}
             >
               Submit Review

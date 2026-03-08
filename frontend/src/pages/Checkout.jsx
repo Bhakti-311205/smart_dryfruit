@@ -28,9 +28,9 @@ const Checkout = () => {
           onClick={() => navigate("/products")}
           sx={{
             mt: 2,
-            bgcolor: "#1e3c72",
+            bgcolor: "#6B3E26",
             "&:hover": {
-              bgcolor: "#162c54",
+              bgcolor: "#3E2723",
             },
           }}
         >

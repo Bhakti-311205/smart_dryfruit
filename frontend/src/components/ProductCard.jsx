@@ -242,7 +242,7 @@ const ProductCard = ({ product, isFavorite: initialFavorite }) => {
               variant="h5"
               sx={{
                 fontWeight: 800,
-                color: "#1e3c72",
+                color: "#6B3E26",
                 display: "inline",
               }}
             >

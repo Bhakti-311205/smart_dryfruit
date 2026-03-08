@@ -28,7 +28,7 @@ const NotFound = () => (
           mb: 1,
           fontWeight: 800,
           background:
-            "linear-gradient(135deg, #1e3c72, #2193b0)",
+            "linear-gradient(135deg, #6B3E26, #8BC34A)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -51,10 +51,10 @@ const NotFound = () => (
           px: 3,
           fontWeight: 600,
           background:
-            "linear-gradient(90deg, #1e3c72, #2193b0)",
+            "linear-gradient(90deg, #6B3E26, #8BC34A)",
           "&:hover": {
             background:
-              "linear-gradient(90deg, #162c54, #1e88a8)",
+              "linear-gradient(90deg, #3E2723, #1e88a8)",
           },
         }}
       >

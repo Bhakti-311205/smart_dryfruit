@@ -40,7 +40,7 @@ const Wishlist = () => {
         sx={{
           fontWeight: 800,
           mb: 4,
-          background: "linear-gradient(135deg, #1e3c72, #2193b0)",
+          background: "linear-gradient(135deg, #6B3E26, #8BC34A)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -63,7 +63,7 @@ const Wishlist = () => {
       ) : (
         <Grid container spacing={3}>
           {items.map((product) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+            <Grid item xs={12} sm={6} md={6} lg={6} key={product._id} sx={{ display: "flex" }}>
               <ProductCard product={product} isFavorite />
             </Grid>
           ))}

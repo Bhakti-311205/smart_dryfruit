@@ -1,0 +1,2 @@
+c:\bhakti\smart-dryfruit\smart-dryfruit\smart-dryfruit\backend\.env
+c:\bhakti\smart-dryfruit\smart-dryfruit\smart-dryfruit\backend\.env.example

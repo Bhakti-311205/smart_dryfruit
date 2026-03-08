@@ -10,7 +10,7 @@ import {
   Select,
   MenuItem,
   Alert,
-  Fade,
+  Button,
 } from "@mui/material";
 import { Search, FilterList } from "@mui/icons-material";
 import { getProducts } from "../api/productApi";
@@ -110,7 +110,7 @@ const Products = () => {
           px: { xs: 2, md: 4 },
           py: { xs: 3, md: 4 },
           boxShadow: 4,
-          bgcolor: "rgba(255,255,255,0.97)",
+          bgcolor: "rgba(234, 219, 200, 0.95)",
         }}
       >
         {/* Header */}
@@ -121,7 +121,7 @@ const Products = () => {
               fontWeight: 800,
               mb: 1,
               background:
-                "linear-gradient(135deg, #1e3c72, #2193b0)",
+                "linear-gradient(135deg, #6B3E26, #8BC34A)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}
@@ -138,20 +138,20 @@ const Products = () => {
           sx={{
             mb: 4,
             p: 3,
-            bgcolor: "rgba(255,255,255,0.98)",
+            bgcolor: "rgba(234, 219, 200, 0.5)",
             borderRadius: 3,
             boxShadow: 1,
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-            <FilterList sx={{ mr: 1, color: "#1e3c72" }} />
+            <FilterList sx={{ mr: 1, color: "#6B3E26" }} />
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
               Filters
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} md={3}>
               <TextField
                 fullWidth
                 placeholder="Search products..."
@@ -162,12 +162,12 @@ const Products = () => {
                     <Search sx={{ mr: 1, color: "text.secondary" }} />
                   ),
                 }}
-                sx={{ bgcolor: "white", borderRadius: 2 }}
+                sx={{ bgcolor: "rgba(255,255,255,0.5)", borderRadius: 2 }}
               />
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              <FormControl fullWidth>
+            <Grid item xs={6} sm={4} md={2}>
+              <FormControl fullWidth size="small">
                 <InputLabel>Category</InputLabel>
                 <Select
                   value={selectedCategory}
@@ -183,8 +183,8 @@ const Products = () => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              <FormControl fullWidth>
+            <Grid item xs={6} sm={4} md={2}>
+              <FormControl fullWidth size="small">
                 <InputLabel>Variety</InputLabel>
                 <Select
                   value={selectedVariety}
@@ -200,8 +200,8 @@ const Products = () => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              <FormControl fullWidth>
+            <Grid item xs={6} sm={4} md={2}>
+              <FormControl fullWidth size="small">
                 <InputLabel>Quality</InputLabel>
                 <Select
                   value={selectedQuality}
@@ -217,47 +217,45 @@ const Products = () => {
               </FormControl>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2}>
-              <Box
+            <Grid item xs={6} sm={4} md={3}>
+              <Button
+                fullWidth
+                variant="contained"
                 onClick={clearFilters}
                 sx={{
-                  height: "100%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  bgcolor: "#1e3c72",
+                  height: 40,
+                  bgcolor: "#6B3E26",
                   color: "white",
                   borderRadius: 2,
-                  cursor: "pointer",
+                  fontWeight: 600,
                   "&:hover": {
-                    bgcolor: "#162c54",
+                    bgcolor: "#3E2723",
                   },
                 }}
               >
-                <Typography variant="body2" sx={{ fontWeight: 600 }}>
-                  Clear Filters
-                </Typography>
-              </Box>
+                Clear Filters
+              </Button>
             </Grid>
           </Grid>
         </Box>
 
-        {/* Products Grid */}
-        <Grid container spacing={3} alignItems="stretch">
-          {filteredProducts.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} key={product._id} sx={{ display: "flex" }}>
-              <Fade
-                in
-                timeout={400}
-                style={{ transitionDelay: `${index * 60}ms` }}
-              >
-                <Box sx={{ display: "flex", width: "100%" }}>
-                  <ProductCard product={product} />
-                </Box>
-              </Fade>
-            </Grid>
+        <Box
+          sx={{
+            background: "#F3ECE3",
+            padding: "30px",
+            borderRadius: 3,
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "25px",
+            width: "100%",
+          }}
+        >
+          {filteredProducts.map((product) => (
+            <Box key={product._id} sx={{ minWidth: 0 }}>
+              <ProductCard product={product} />
+            </Box>
           ))}
-        </Grid>
+        </Box>
 
         <PageNavigator
           backTo="/"

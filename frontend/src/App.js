@@ -3,6 +3,7 @@ import { Box, CssBaseline, Fade } from "@mui/material";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import DashboardLayout from "./layouts/DashboardLayout";
+import BackgroundAnimation from "./components/BackgroundAnimation";
 
 // Public pages
 import Home from "./pages/Home";
@@ -46,12 +47,14 @@ import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const location = useLocation();
-  const hideFooter =
-    location.pathname === "/login" || location.pathname === "/register";
   const isDashboardRoute =
     location.pathname.startsWith("/admin") ||
     location.pathname.startsWith("/staff") ||
     location.pathname.startsWith("/user-dashboard");
+  const hideFooter =
+    location.pathname === "/login" ||
+    location.pathname === "/register" ||
+    isDashboardRoute;
 
   return (
     <>
@@ -64,6 +67,7 @@ function App() {
           background: "transparent",
         }}
       >
+        {location.pathname !== "/" && <BackgroundAnimation />}
         {!isDashboardRoute && <Navbar />}
         <ScrollToTop />
 

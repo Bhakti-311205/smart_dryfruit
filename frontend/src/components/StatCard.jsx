@@ -23,22 +23,23 @@ const AnimatedValue = ({ value, duration = 1200 }) => {
     if (!started) return;
 
     // Extract numeric part
-    const numericMatch = value.match(/(\d+)/);
+    const strValue = String(value);
+    const numericMatch = strValue.match(/(\d+)/);
     if (!numericMatch) {
-      setDisplayValue(value);
+      setDisplayValue(strValue);
       return;
     }
 
     const target = parseInt(numericMatch[1], 10);
-    const prefix = value.slice(0, numericMatch.index);
-    const suffix = value.slice(numericMatch.index + numericMatch[0].length);
+    const prefix = strValue.slice(0, numericMatch.index);
+    const suffix = strValue.slice(numericMatch.index + numericMatch[0].length);
     const step = Math.max(1, Math.ceil(target / (duration / 30)));
     let current = 0;
 
     const timer = setInterval(() => {
       current += step;
       if (current >= target) {
-        setDisplayValue(value);
+        setDisplayValue(strValue);
         clearInterval(timer);
       } else {
         setDisplayValue(`${prefix}${current}${suffix}`);
@@ -48,7 +49,7 @@ const AnimatedValue = ({ value, duration = 1200 }) => {
     return () => clearInterval(timer);
   }, [started, value, duration]);
 
-  return <span ref={ref}>{started ? displayValue : value.replace(/\d+/, "0")}</span>;
+  return <span ref={ref}>{started ? displayValue : String(value).replace(/\d+/, "0")}</span>;
 };
 
 const StatCard = ({ label, value, subtext }) => (
@@ -56,7 +57,7 @@ const StatCard = ({ label, value, subtext }) => (
     sx={{
       borderRadius: 3,
       boxShadow: 3,
-      bgcolor: "rgba(255,255,255,0.92)",
+      bgcolor: "rgba(234, 219, 200, 0.9)",
       backdropFilter: "blur(6px)",
       transition: "transform 0.25s ease, box-shadow 0.25s ease",
       "&:hover": {

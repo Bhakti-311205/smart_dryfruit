@@ -26,6 +26,7 @@ import {
 } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import axiosClient from "../api/axiosClient";
+import PageNavigator from "../components/PageNavigator";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -116,7 +117,7 @@ const ManageUsers = () => {
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
         <Typography
           variant="h4"
-          sx={{ fontWeight: 800, color: "#1e3c72" }}
+          sx={{ fontWeight: 800, color: "#6B3E26" }}
         >
           Manage Users
         </Typography>
@@ -126,8 +127,8 @@ const ManageUsers = () => {
           startIcon={<Add />}
           onClick={handleOpen}
           sx={{
-            bgcolor: "#1e3c72",
-            "&:hover": { bgcolor: "#162c54" },
+            bgcolor: "#6B3E26",
+            "&:hover": { bgcolor: "#3E2723" },
           }}
         >
           Add User
@@ -248,14 +249,21 @@ const ManageUsers = () => {
             onClick={handleSubmit}
             variant="contained"
             sx={{
-              bgcolor: "#1e3c72",
-              "&:hover": { bgcolor: "#162c54" },
+              bgcolor: "#6B3E26",
+              "&:hover": { bgcolor: "#3E2723" },
             }}
           >
             Create User
           </Button>
         </DialogActions>
       </Dialog>
+
+      <PageNavigator
+        backTo="/admin"
+        backLabel="Back to Admin Dashboard"
+        nextTo="/"
+        nextLabel="Go to Home"
+      />
     </Container>
   );
 };

@@ -49,8 +49,8 @@ const PageNavigator = ({
           endIcon={<ArrowForward />}
           onClick={handleNext}
           sx={{
-            bgcolor: "#1e3c72",
-            "&:hover": { bgcolor: "#162c54" },
+            bgcolor: "#6B3E26",
+            "&:hover": { bgcolor: "#3E2723" },
           }}
         >
           {nextLabel}

@@ -72,13 +72,13 @@ const BulkOrder = () => {
     return (
         <Container maxWidth="md" sx={{ py: 4 }}>
             <Box sx={{ textAlign: "center", mb: 4 }}>
-                <Business sx={{ fontSize: 60, color: "#1e3c72", mb: 1 }} />
+                <Business sx={{ fontSize: 60, color: "#6B3E26", mb: 1 }} />
                 <Typography
                     variant="h3"
                     sx={{
                         fontWeight: 800,
                         mb: 1,
-                        background: "linear-gradient(135deg, #1e3c72, #2193b0)",
+                        background: "linear-gradient(135deg, #6B3E26, #8BC34A)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                     }}
@@ -106,7 +106,7 @@ const BulkOrder = () => {
             <Paper
                 component="form"
                 onSubmit={handleSubmit}
-                sx={{ p: 4, borderRadius: 3, boxShadow: 3 }}
+                sx={{ p: 4, borderRadius: 3, boxShadow: 3, bgcolor: "rgba(234, 219, 200, 0.95)" }}
             >
                 <Typography variant="h6" sx={{ fontWeight: 600, mb: 3 }}>
                     Inquiry Form
@@ -193,12 +193,12 @@ const BulkOrder = () => {
                     startIcon={<Send />}
                     sx={{
                         mt: 3,
-                        bgcolor: "#1e3c72",
+                        bgcolor: "#6B3E26",
                         fontWeight: 600,
                         py: 1.5,
                         borderRadius: 2,
                         fontSize: "1.1rem",
-                        "&:hover": { bgcolor: "#162c54" },
+                        "&:hover": { bgcolor: "#3E2723" },
                     }}
                 >
                     {loading ? "Submitting..." : "Submit Bulk Order Inquiry"}

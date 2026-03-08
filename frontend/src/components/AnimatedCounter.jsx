@@ -23,7 +23,7 @@ const AnimatedCounter = ({ value, duration = 1500, prefix = "", suffix = "", sx 
     useEffect(() => {
         if (!started) return;
 
-        const numericValue = parseInt(value.replace(/\D/g, ""), 10) || 0;
+        const numericValue = parseInt(String(value).replace(/\D/g, ""), 10) || 0;
         const step = Math.max(1, Math.ceil(numericValue / (duration / 30)));
         let current = 0;
 

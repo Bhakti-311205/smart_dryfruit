@@ -2,8 +2,8 @@ import { alpha } from "@mui/material/styles";
 
 export function getDesignTokens() {
   const brand = {
-    primary: "#1e3c72",
-    secondary: "#2193b0",
+    primary: "#6B3E26",   // Walnut Brown
+    secondary: "#8BC34A", // Pistachio Green
   };
 
   return {
@@ -12,18 +12,18 @@ export function getDesignTokens() {
       primary: { main: brand.primary },
       secondary: { main: brand.secondary },
       background: {
-        default: "#f4f8fb",
-        paper: "#ffffff",
+        default: "#F3ECE3", // Cream Sand
+        paper: "#EADBC8",   // Almond Beige
       },
       text: {
-        primary: "#0f172a",
-        secondary: "rgba(15,23,42,0.66)",
+        primary: "#3E2723",
+        secondary: "rgba(62,39,35,0.76)",
       },
-      divider: "rgba(15,23,42,0.10)",
+      divider: "rgba(107,62,38,0.15)",
     },
     shape: { borderRadius: 14 },
     typography: {
-      fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+      fontFamily: "'Poppins', 'Inter', 'Segoe UI', 'Roboto', sans-serif",
       h1: { fontWeight: 800 },
       h2: { fontWeight: 800 },
       h3: { fontWeight: 800 },
@@ -36,8 +36,7 @@ export function getDesignTokens() {
       MuiCssBaseline: {
         styleOverrides: {
           body: {
-            backgroundImage:
-              "radial-gradient(1000px 500px at 10% -10%, rgba(33,147,176,0.14), transparent 60%), radial-gradient(900px 400px at 90% 0%, rgba(30,60,114,0.12), transparent 55%)",
+            backgroundImage: "none",
             backgroundAttachment: "fixed",
           },
         },
@@ -45,9 +44,9 @@ export function getDesignTokens() {
       MuiAppBar: {
         styleOverrides: {
           root: {
-            background:
-              "linear-gradient(90deg, rgba(30,60,114,0.95), rgba(42,82,152,0.92), rgba(77,208,225,0.90))",
-            backdropFilter: "blur(14px)",
+            background: "#6B3E26",
+            color: "#EADBC8",
+            backdropFilter: "none",
           },
         },
       },
@@ -62,19 +61,53 @@ export function getDesignTokens() {
         styleOverrides: {
           root: {
             borderRadius: 18,
-            border: `1px solid rgba(15,23,42,0.08)`,
-            boxShadow: "0 10px 30px rgba(15,23,42,0.10)",
+            backgroundColor: "#EADBC8",
+            border: `1px solid rgba(107,62,38,0.08)`,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            "&:hover": {
+              transform: "translateY(-5px)",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+            },
           },
         },
       },
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: 14,
+            borderRadius: "50px", // Pill shape
             textTransform: "none",
+            fontWeight: 700,
+            padding: "10px 24px",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            "&:hover": {
+              transform: "translateY(-2px)",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.15)",
+            },
+            "&:active": {
+              transform: "translateY(0)",
+            },
           },
           containedPrimary: {
-            boxShadow: "0 10px 24px rgba(30,60,114,0.18)",
+            background: "#6B3E26",
+            color: "#EADBC8",
+            boxShadow: "0 4px 15px rgba(107,62,38,0.25)",
+            "&:hover": {
+              background: "#8BC34A",
+              color: "#3E2723",
+              boxShadow: "0 6px 20px rgba(139,195,74,0.35)",
+            },
+          },
+          outlinedPrimary: {
+            borderWidth: "2px",
+            borderColor: "#6B3E26",
+            color: "#6B3E26",
+            "&:hover": {
+              borderWidth: "2px",
+              backgroundColor: alpha("#6B3E26", 0.05),
+              borderColor: "#8BC34A",
+              color: "#3E2723",
+            },
           },
         },
       },
@@ -82,7 +115,8 @@ export function getDesignTokens() {
         styleOverrides: {
           root: {
             borderRadius: 18,
-            border: `1px solid rgba(15,23,42,0.08)`,
+            backgroundColor: "#EADBC8",
+            border: `1px solid rgba(107,62,38,0.15)`,
             overflow: "hidden",
           },
         },
@@ -90,7 +124,7 @@ export function getDesignTokens() {
       MuiTableHead: {
         styleOverrides: {
           root: {
-            backgroundColor: alpha("#1e3c72", 0.04),
+            backgroundColor: alpha("#6B3E26", 0.08),
           },
         },
       },
@@ -99,7 +133,7 @@ export function getDesignTokens() {
           root: {
             transition: "background-color 180ms ease",
             "&:hover": {
-              backgroundColor: alpha("#1e3c72", 0.03),
+              backgroundColor: alpha("#6B3E26", 0.04),
             },
           },
         },

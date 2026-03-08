@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { submitContactMessage } from "../api/contactApi";
 import PageNavigator from "../components/PageNavigator";
+import Logo from "../components/Logo";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -39,7 +40,7 @@ const Contact = () => {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          "Failed to send message. Please try again later."
+        "Failed to send message. Please try again later."
       );
     } finally {
       setSubmitting(false);
@@ -54,13 +55,13 @@ const Contact = () => {
           sx={{
             fontWeight: 800,
             mb: 3,
-            background:
-              "linear-gradient(135deg, #1e3c72 0%, #2193b0 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            color: "#6B3E26",
           }}
         >
-          Contact NutHub
+          Contact <Logo sx={{ height: { xs: 32, md: 40 } }} />
         </Typography>
 
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
@@ -75,7 +76,7 @@ const Contact = () => {
                 p: 3,
                 borderRadius: 3,
                 boxShadow: 3,
-                bgcolor: "#ffffff",
+                bgcolor: "rgba(234, 219, 200, 0.95)",
               }}
             >
               <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
@@ -140,7 +141,7 @@ const Contact = () => {
                     borderRadius: 2,
                     px: 4,
                     background:
-                      "linear-gradient(90deg, #1e3c72, #2193b0)",
+                      "linear-gradient(90deg, #6B3E26, #8BC34A)",
                   }}
                 >
                   {submitting ? "Submitting..." : "Submit"}
@@ -155,15 +156,15 @@ const Contact = () => {
                 p: 3,
                 borderRadius: 3,
                 boxShadow: 3,
-                bgcolor: "#ffffff",
+                bgcolor: "rgba(234, 219, 200, 0.95)",
               }}
             >
               <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
                 Business Details
               </Typography>
 
-              <Typography variant="body2" color="text.secondary">
-                <strong>Business Name:</strong> NutHub – Dry Fruit Business
+              <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
+                <strong style={{ marginRight: '8px' }}>Business Name:</strong> <Logo sx={{ height: 18, mr: 0.5 }} /> – Dry Fruit Business
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 <strong>Location:</strong> Demo Address, India

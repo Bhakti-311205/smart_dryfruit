@@ -11,9 +11,10 @@ import {
   TableHead,
   TableRow,
   Chip,
-  CircularProgress,
   Alert,
+  CircularProgress,
 } from "@mui/material";
+import PageNavigator from "../components/PageNavigator";
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -73,7 +74,7 @@ const AdminOrders = () => {
         sx={{
           fontWeight: 800,
           mb: 4,
-          color: "#1e3c72",
+          color: "#6B3E26",
         }}
       >
         All Orders
@@ -140,7 +141,7 @@ const AdminOrders = () => {
                       variant="body1"
                       sx={{
                         fontWeight: 600,
-                        color: "#1e3c72",
+                        color: "#6B3E26",
                       }}
                     >
                       ₹{o.totalAmount?.toFixed(2) || 0}
@@ -166,6 +167,13 @@ const AdminOrders = () => {
           </Table>
         </TableContainer>
       )}
+
+      <PageNavigator
+        backTo="/admin"
+        backLabel="Back to Admin Dashboard"
+        nextTo="/"
+        nextLabel="Go to Home"
+      />
     </Container>
   );
 };

@@ -12,6 +12,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import PageNavigator from "../components/PageNavigator";
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -90,7 +91,7 @@ const AddProduct = () => {
           p: 4,
           borderRadius: 3,
           boxShadow: 4,
-          bgcolor: "rgba(255,255,255,0.97)",
+          bgcolor: "rgba(234, 219, 200, 0.95)",
         }}
       >
         {/* Blue Title */}
@@ -99,7 +100,7 @@ const AddProduct = () => {
           sx={{
             fontWeight: 800,
             mb: 3,
-            color: "#1e3c72",
+            color: "#6B3E26",
           }}
         >
           Add Product
@@ -195,10 +196,10 @@ const AddProduct = () => {
                 variant="outlined"
                 component="label"
                 sx={{
-                  borderColor: "#1e3c72",
-                  color: "#1e3c72",
+                  borderColor: "#6B3E26",
+                  color: "#6B3E26",
                   "&:hover": {
-                    borderColor: "#162c54",
+                    borderColor: "#3E2723",
                     backgroundColor: "rgba(30,60,114,0.05)",
                   },
                 }}
@@ -230,9 +231,9 @@ const AddProduct = () => {
                 px: 4,
                 py: 1.2,
                 fontWeight: 600,
-                bgcolor: "#1e3c72",
+                bgcolor: "#6B3E26",
                 "&:hover": {
-                  bgcolor: "#162c54",
+                  bgcolor: "#3E2723",
                 },
               }}
             >
@@ -256,6 +257,13 @@ const AddProduct = () => {
           {snackbar.message}
         </Alert>
       </Snackbar>
+
+      <PageNavigator
+        backTo="/admin/products"
+        backLabel="Back to Manage Products"
+        nextTo="/admin"
+        nextLabel="Go to Admin Dashboard"
+      />
     </Container>
   );
 };

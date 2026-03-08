@@ -24,6 +24,7 @@ import {
     MenuItem,
 } from "@mui/material";
 import { getBulkOrdersApi, updateBulkOrderStatusApi } from "../api/bulkOrderApi";
+import PageNavigator from "../components/PageNavigator";
 
 const STATUS_COLORS = {
     Pending: "warning",
@@ -88,7 +89,7 @@ const BulkOrdersAdmin = () => {
                 sx={{
                     fontWeight: 800,
                     mb: 4,
-                    background: "linear-gradient(135deg, #1e3c72, #2193b0)",
+                    background: "linear-gradient(135deg, #6B3E26, #8BC34A)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                 }}
@@ -163,10 +164,10 @@ const BulkOrdersAdmin = () => {
                                             variant="outlined"
                                             onClick={() => handleStatusOpen(order)}
                                             sx={{
-                                                borderColor: "#1e3c72",
-                                                color: "#1e3c72",
+                                                borderColor: "#6B3E26",
+                                                color: "#6B3E26",
                                                 "&:hover": {
-                                                    borderColor: "#162c54",
+                                                    borderColor: "#3E2723",
                                                     backgroundColor: "rgba(30,60,114,0.05)",
                                                 },
                                             }}
@@ -215,14 +216,21 @@ const BulkOrdersAdmin = () => {
                         onClick={handleStatusUpdate}
                         variant="contained"
                         sx={{
-                            bgcolor: "#1e3c72",
-                            "&:hover": { bgcolor: "#162c54" },
+                            bgcolor: "#6B3E26",
+                            "&:hover": { bgcolor: "#3E2723" },
                         }}
                     >
                         Update
                     </Button>
                 </DialogActions>
             </Dialog>
+
+            <PageNavigator
+                backTo="/admin"
+                backLabel="Back to Admin Dashboard"
+                nextTo="/admin/activity-logs"
+                nextLabel="Go to Activity Logs"
+            />
         </Container>
     );
 };

@@ -22,6 +22,7 @@ import {
 } from "@mui/icons-material";
 import { useLocation } from "react-router-dom";
 import { getUserOrdersApi, downloadInvoiceApi } from "../api/orderApi";
+import PageNavigator from "../components/PageNavigator";
 
 const ORDER_STEPS = ["Placed", "Processing", "Shipped", "Delivered"];
 
@@ -153,7 +154,7 @@ const MyOrders = () => {
           fontWeight: 800,
           mb: 4,
           background:
-            "linear-gradient(135deg, #1e3c72, #2193b0)",
+            "linear-gradient(135deg, #6B3E26, #8BC34A)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -212,7 +213,7 @@ const MyOrders = () => {
                       variant="h6"
                       sx={{
                         fontWeight: 700,
-                        color: "#1e3c72",
+                        color: "#6B3E26",
                       }}
                     >
                       ₹{order.totalAmount?.toFixed(2) || 0}
@@ -267,7 +268,7 @@ const MyOrders = () => {
                           borderColor: "#4caf50",
                         },
                         "& .Mui-active .MuiStepConnector-line": {
-                          borderColor: "#1e3c72",
+                          borderColor: "#6B3E26",
                         },
                       }}
                     >
@@ -289,7 +290,7 @@ const MyOrders = () => {
                                   index <= getActiveStep(order.orderStatus) ? 600 : 400,
                                 color:
                                   index <= getActiveStep(order.orderStatus)
-                                    ? "#1e3c72"
+                                    ? "#6B3E26"
                                     : "text.secondary",
                               }}
                             >
@@ -353,6 +354,13 @@ const MyOrders = () => {
           ))}
         </Grid>
       )}
+
+      <PageNavigator
+        backTo="/user/dashboard"
+        backLabel="Back to Dashboard"
+        nextTo="/products"
+        nextLabel="Continue Shopping"
+      />
     </Container>
   );
 };

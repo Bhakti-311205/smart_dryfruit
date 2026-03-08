@@ -28,6 +28,7 @@ import {
   updateSupplierApi,
   deleteSupplierApi,
 } from "../api/supplierApi";
+import PageNavigator from "../components/PageNavigator";
 
 const ManageSuppliers = () => {
   const [suppliers, setSuppliers] = useState([]);
@@ -141,7 +142,7 @@ const ManageSuppliers = () => {
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
         <Typography
           variant="h4"
-          sx={{ fontWeight: 800, color: "#1e3c72" }}
+          sx={{ fontWeight: 800, color: "#6B3E26" }}
         >
           Manage Suppliers
         </Typography>
@@ -151,8 +152,8 @@ const ManageSuppliers = () => {
           startIcon={<Add />}
           onClick={() => handleOpen()}
           sx={{
-            bgcolor: "#1e3c72",
-            "&:hover": { bgcolor: "#162c54" },
+            bgcolor: "#6B3E26",
+            "&:hover": { bgcolor: "#3E2723" },
           }}
         >
           Add Supplier
@@ -218,7 +219,7 @@ const ManageSuppliers = () => {
                   <IconButton
                     size="small"
                     onClick={() => handleOpen(supplier)}
-                    sx={{ color: "#1e3c72" }}
+                    sx={{ color: "#6B3E26" }}
                   >
                     <Edit />
                   </IconButton>
@@ -292,14 +293,21 @@ const ManageSuppliers = () => {
             onClick={handleSubmit}
             variant="contained"
             sx={{
-              bgcolor: "#1e3c72",
-              "&:hover": { bgcolor: "#162c54" },
+              bgcolor: "#6B3E26",
+              "&:hover": { bgcolor: "#3E2723" },
             }}
           >
             {editingSupplier ? "Update" : "Create"}
           </Button>
         </DialogActions>
       </Dialog>
+
+      <PageNavigator
+        backTo="/admin"
+        backLabel="Back to Admin Dashboard"
+        nextTo="/"
+        nextLabel="Go to Home"
+      />
     </Container>
   );
 };
