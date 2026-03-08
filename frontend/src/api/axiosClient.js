@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "https://smart-dryfruit-1.onrender.com",
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8000/api",
 });
 
 // Add token to requests
