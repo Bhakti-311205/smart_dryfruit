@@ -32,8 +32,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 
-import { useTheme } from "@mui/material/styles";
-
 import Footer from "../components/Footer";
 import Logo from "../components/Logo";
 
@@ -75,7 +73,6 @@ const DashboardLayout = ({ role, title, children }) => {
   const { clearCart } = useCart();
   const navigate = useNavigate();
   const location = useLocation();
-  const theme = useTheme();
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
