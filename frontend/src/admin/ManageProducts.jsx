@@ -25,7 +25,8 @@ const ManageProducts = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/products");
+        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
+        const res = await axios.get(`${API_URL}/products`);
         setProducts(res.data || []);
       } catch (err) {
         setError("Failed to load products");
