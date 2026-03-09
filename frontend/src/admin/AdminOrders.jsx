@@ -26,7 +26,7 @@ const AdminOrders = () => {
       try {
         setLoading(true);
         const token = localStorage.getItem("accessToken");
-        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
+        const API_URL = process.env.REACT_APP_API_URL || "https://smart-dryfruit.onrender.com/api";
 
         const res = await axios.get(`${API_URL}/orders/all`, {
           headers: { Authorization: `Bearer ${token}` },

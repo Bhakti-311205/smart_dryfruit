@@ -25,7 +25,7 @@ const ManageProducts = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8000/api";
+        const API_URL = process.env.REACT_APP_API_URL || "https://smart-dryfruit.onrender.com/api";
         const res = await axios.get(`${API_URL}/products`);
         setProducts(res.data || []);
       } catch (err) {
