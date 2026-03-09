@@ -57,7 +57,7 @@ const Register = () => {
         1500
       );
     } catch (err) {
-      setError("Unable to register. Email may already exist.");
+      setError(err.response?.data?.message || "Unable to register. Please try again.");
     }
   };
 
