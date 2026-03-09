@@ -46,16 +46,10 @@ app.use("/api/activity-logs", require("./routes/activityLogRoutes"));
 app.use("/api/reviews", require("./routes/reviewRoutes"));
 app.use("/api/bulk-orders", require("./routes/bulkOrderRoutes"));
 
-// ─── SERVE FRONTEND IN PRODUCTION ───
-if (process.env.NODE_ENV === "production") {
-  const buildPath = path.join(__dirname, "..", "frontend", "build");
-  app.use(express.static(buildPath));
-
-  // Any route that is NOT /api/* should serve the React app
-  app.all(/(.*)/, (req, res) => {
-    res.sendFile(path.join(buildPath, "index.html"));
-  });
-}
+// ─── API RUNNING STATUS ───
+app.get("/", (req, res) => {
+  res.send("Smart Dryfruit API is running...");
+});
 
 // Error handling middleware (must be last)
 app.use(require("./middleware/errorHandler"));

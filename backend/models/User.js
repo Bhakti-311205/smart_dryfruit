@@ -18,9 +18,9 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-  role: { 
-    type: String, 
-    enum: ["admin", "staff", "customer"], 
+  role: {
+    type: String,
+    enum: ["admin", "staff", "customer"],
     default: "customer",
     required: true
   },
@@ -46,14 +46,13 @@ const userSchema = new mongoose.Schema({
       ref: "Product"
     }
   ],
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
 // Index for faster queries
-userSchema.index({ email: 1 });
 userSchema.index({ role: 1 });
 
 module.exports = mongoose.model("User", userSchema);
