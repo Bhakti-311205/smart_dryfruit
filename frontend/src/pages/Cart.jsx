@@ -93,7 +93,7 @@ const Cart = () => {
                       src={
                         item.image?.startsWith("http")
                           ? item.image
-                          : `${process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL.replace("/api", "") : "https://smart-dryfruit.onrender.com"}/uploads/${item.image}`
+                          : `${process.env.REACT_APP_API_URL ? (process.env.REACT_APP_API_URL.endsWith("/api") ? process.env.REACT_APP_API_URL.slice(0, -4) : process.env.REACT_APP_API_URL) : "https://smart-dryfruit.onrender.com"}/uploads/${item.image}`
                       }
                       alt={item.name}
                       sx={{
