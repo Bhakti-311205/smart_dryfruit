@@ -34,11 +34,9 @@ router.post("/register", async (req, res) => {
         // Fully verified user — block re-registration
         console.log("User already exists and is verified:", email);
         return res.status(400).json({ message: "User already exists" });
-      } else {
-        // Unverified account — delete it so the user can retry registration
-        console.log("Deleting unverified account for re-registration:", email);
-        await User.deleteOne({ email });
       }
+      // Unverified account — allow re-registration, will be overwritten below
+      console.log("Unverified account found, allowing re-registration:", email);
     }
 
     const hashed = await bcrypt.hash(password, 10);
@@ -58,21 +56,16 @@ router.post("/register", async (req, res) => {
     };
 
     console.log("Creating user with data:", { ...userData, password: "[HIDDEN]", otp: "[HIDDEN]" });
-    const user = new User(userData);
 
-    // Validate before saving
-    const validationError = user.validateSync();
-    if (validationError) {
-      console.error("User validation error:", validationError);
-      const errors = Object.values(validationError.errors).map(e => e.message);
-      return res.status(400).json({
-        message: "Validation error",
-        errors: errors
-      });
-    }
+    // Use findOneAndUpdate with upsert to safely overwrite unverified accounts
+    // and avoid MongoDB unique-index race conditions from delete+insert
+    const savedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: userData },
+      { upsert: true, new: true, runValidators: true, setDefaultsOnInsert: true }
+    );
 
-    const savedUser = await user.save();
-    console.log("User created successfully:", {
+    console.log("User saved successfully:", {
       id: savedUser._id,
       email: savedUser.email,
       role: savedUser.role
@@ -98,6 +91,10 @@ router.post("/register", async (req, res) => {
     });
   } catch (error) {
     console.error("Registration error:", error);
+    // Handle MongoDB duplicate key error gracefully
+    if (error.code === 11000) {
+      return res.status(400).json({ message: "User already exists" });
+    }
     console.error("Error stack:", error.stack);
     res.status(500).json({ message: "Server error", error: error.message });
   }
