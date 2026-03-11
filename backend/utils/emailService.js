@@ -25,7 +25,10 @@ function getTransporter() {
       },
       tls: {
         rejectUnauthorized: false
-      }
+      },
+      connectionTimeout: 10000, // Fail fast: 10 seconds max to connect
+      greetingTimeout: 10000,
+      socketTimeout: 10000
     });
     console.log("[EmailService] SMTP transporter created.");
   } else {

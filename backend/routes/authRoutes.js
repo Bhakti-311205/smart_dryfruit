@@ -72,12 +72,11 @@ router.post("/register", async (req, res) => {
     });
 
     // Send OTP email (or log in dev fallback)
-    try {
-      await sendOtpEmail(savedUser.email, otp);
-    } catch (emailError) {
-      console.error("Failed to send OTP email:", emailError);
-      // We still allow registration but inform the client
-    }
+    // Run asynchronously without awaiting, so it doesn't block the API response
+    // if the SMTP server is slow or timing out (Render blocks port 587 sometimes)
+    sendOtpEmail(savedUser.email, otp).catch(emailError => {
+      console.error("Failed to send async OTP email:", emailError.message);
+    });
 
     // Don't send password or otp in response
     const userResponse = savedUser.toObject();
@@ -168,12 +167,10 @@ router.post("/resend-otp", async (req, res) => {
     user.otpExpiry = otpExpiry;
     await user.save();
 
-    // Send OTP email
-    try {
-      await sendOtpEmail(user.email, otp);
-    } catch (emailError) {
-      console.error("Failed to resend OTP email:", emailError);
-    }
+    // Send OTP email asynchronously
+    sendOtpEmail(user.email, otp).catch(emailError => {
+      console.error("Failed to resend async OTP email:", emailError.message);
+    });
 
     return res.status(200).json({ message: "A new OTP has been sent to your email." });
   } catch (error) {
