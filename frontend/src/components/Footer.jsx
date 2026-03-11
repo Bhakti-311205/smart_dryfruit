@@ -60,24 +60,18 @@ const Footer = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
-            Business Details
-          </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.9 }}>
-            Email: support@nuthub-demo.com
-          </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.9 }}>
-            Phone: +91‑9876543210
-          </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.9, mb: 1 }}>
-            Location: Demo Address, India
-          </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.75 }}>
-            Open to customisation: add your logo, address and branding easily
-            in this footer for your college or client demo.
-          </Typography>
-        </Grid>
+        <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+          Business Details
+        </Typography>
+        <Typography variant="body2" sx={{ opacity: 0.9 }}>
+          Email: support@nuthub-demo.com
+        </Typography>
+        <Typography variant="body2" sx={{ opacity: 0.9 }}>
+          Phone: +91‑9876543210
+        </Typography>
+        <Typography variant="body2" sx={{ opacity: 0.9, mb: 1 }}>
+          Location: Nuthub by swastik enterprise location mulund, mumbai
+        </Typography>
       </Grid>
 
       <Box

@@ -131,7 +131,16 @@ const Navbar = () => {
             </Link>
           </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
+          <Box sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.25,
+            overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
+            "&::-webkit-scrollbar": { display: "none" },
+            msOverflowStyle: "none",
+            scrollbarWidth: "none",
+          }}>
             <Button
               color="inherit"
               component={Link}

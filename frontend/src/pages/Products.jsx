@@ -242,11 +242,11 @@ const Products = () => {
         <Box
           sx={{
             background: "#F3ECE3",
-            padding: "30px",
+            padding: { xs: "15px", md: "30px" },
             borderRadius: 3,
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "25px",
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)" },
+            gap: { xs: "16px", md: "25px" },
             width: "100%",
           }}
         >
