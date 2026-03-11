@@ -30,8 +30,15 @@ router.post("/register", async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      console.log("User already exists:", email);
-      return res.status(400).json({ message: "User already exists" });
+      if (existingUser.isVerified) {
+        // Fully verified user — block re-registration
+        console.log("User already exists and is verified:", email);
+        return res.status(400).json({ message: "User already exists" });
+      } else {
+        // Unverified account — delete it so the user can retry registration
+        console.log("Deleting unverified account for re-registration:", email);
+        await User.deleteOne({ email });
+      }
     }
 
     const hashed = await bcrypt.hash(password, 10);

@@ -269,36 +269,38 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Button
-                  color="inherit"
-                  component={Link}
-                  to="/cart"
-                  startIcon={
-                    <MuiBadge
-                      badgeContent={cart.length}
-                      color="error"
-                      sx={{
-                        "& .MuiBadge-badge": {
-                          fontSize: 10,
-                          minWidth: 18,
-                          height: 18,
-                        },
-                      }}
-                    >
-                      <ShoppingCart />
-                    </MuiBadge>
-                  }
-                  sx={{
-                    ...navButtonBase,
-                    px: 2,
-                    ...(isActivePath("/cart") && {
-                      bgcolor: "rgba(255,255,255,0.22)",
-                      boxShadow: "0 6px 18px rgba(0,0,0,0.28)",
-                    }),
-                  }}
-                >
-                  Cart
-                </Button>
+                {user.role === "customer" && (
+                  <Button
+                    color="inherit"
+                    component={Link}
+                    to="/cart"
+                    startIcon={
+                      <MuiBadge
+                        badgeContent={cart.length}
+                        color="error"
+                        sx={{
+                          "& .MuiBadge-badge": {
+                            fontSize: 10,
+                            minWidth: 18,
+                            height: 18,
+                          },
+                        }}
+                      >
+                        <ShoppingCart />
+                      </MuiBadge>
+                    }
+                    sx={{
+                      ...navButtonBase,
+                      px: 2,
+                      ...(isActivePath("/cart") && {
+                        bgcolor: "rgba(255,255,255,0.22)",
+                        boxShadow: "0 6px 18px rgba(0,0,0,0.28)",
+                      }),
+                    }}
+                  >
+                    Cart
+                  </Button>
+                )}
 
                 {user.role === "customer" && (
                   <Button

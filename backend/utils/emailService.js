@@ -18,9 +18,13 @@ function getTransporter() {
       host: SMTP_HOST,
       port: Number(SMTP_PORT) || 587,
       secure: false,
+      requireTLS: true,
       auth: {
         user: SMTP_USER,
         pass: SMTP_PASS
+      },
+      tls: {
+        rejectUnauthorized: false
       }
     });
     console.log("[EmailService] Gmail SMTP transporter created.");
