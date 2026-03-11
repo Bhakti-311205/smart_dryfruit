@@ -29,25 +29,32 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("[Login] Form submitted", { email: form.email, role: selectedRole });
     setError("");
     setLoading(true);
 
     try {
+      console.log("[Login] Sending API request to /auth/login...");
       const res = await loginApi({
         email: form.email,
         password: form.password
       });
 
+      console.log("[Login] API response received successfully:", res.data);
+
       // Enforce role based on selection
       const userRole = res.data.user.role;
+      console.log("[Login] User role from backend:", userRole, "| Selected role:", selectedRole);
 
       if (selectedRole && userRole !== selectedRole) {
+        console.warn("[Login] Role mismatch blocked login.");
         setError(
           `This account is a "${userRole}" account, but you selected "${selectedRole}". Please choose the correct role or use the right account.`
         );
         return;
       }
 
+      console.log("[Login] Storing user context and navigating...");
       login(res.data);
 
       if (userRole === "admin") {
@@ -58,8 +65,17 @@ const Login = () => {
         navigate("/");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid credentials");
+      console.error("[Login] API Error caught:", err);
+      if (!err.response) {
+        // Network error, CORS error, or server timeout
+        console.error("[Login] Network or Timeout error. No response received from server.");
+        setError("Network error: Could not connect to the server. Please wait a moment and try again.");
+      } else {
+        console.error("[Login] Server responded with error status:", err.response.status, err.response.data);
+        setError(err.response?.data?.message || "Invalid credentials");
+      }
     } finally {
+      console.log("[Login] Setting loading to false in finally block.");
       setLoading(false);
     }
   };

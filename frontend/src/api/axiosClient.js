@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let apiBaseUrl = process.env.REACT_APP_API_URL || "https://smart-dryfruit.onrender.com/api";
+let apiBaseUrl = process.env.REACT_APP_API_URL || "https://smart-dryfruit-3.onrender.com/api";
 if (apiBaseUrl) {
   apiBaseUrl = apiBaseUrl.replace(/\/+$/, "");
   if (!apiBaseUrl.endsWith("/api")) {
