@@ -1,53 +1,39 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 
-// Lazy-initialize transporter so env vars are guaranteed to be loaded
-let transporter = null;
+// Lazy-initialize Resend client
+let resend = null;
 
-function getTransporter() {
-  if (transporter) return transporter;
+function getResendClient() {
+  if (resend) return resend;
 
-  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  const apiKey = process.env.RESEND_API_KEY;
+  console.log("[EmailService] RESEND_API_KEY set:", apiKey ? `yes (${apiKey.length} chars)` : "no");
 
-  console.log("[EmailService] Initializing transporter...");
-  console.log("[EmailService] SMTP_HOST:", SMTP_HOST || "(not set)");
-  console.log("[EmailService] SMTP_USER:", SMTP_USER || "(not set)");
-  console.log("[EmailService] SMTP_PASS set:", SMTP_PASS ? `yes (${SMTP_PASS.length} chars)` : "no");
-
-  if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
-    transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: Number(SMTP_PORT) || 587,
-      secure: false,
-      requireTLS: true,
-      auth: {
-        user: SMTP_USER,
-        pass: SMTP_PASS
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
-    console.log("[EmailService] Gmail SMTP transporter created.");
+  if (apiKey) {
+    resend = new Resend(apiKey);
+    console.log("[EmailService] Resend client initialized.");
   } else {
     // Fallback: log emails to console in development
-    console.log("[EmailService] SMTP not configured — using console fallback.");
-    transporter = {
-      sendMail: async (options) => {
-        console.log("=== EMAIL (DEV FALLBACK) ===");
-        console.log("To:", options.to);
-        console.log("Subject:", options.subject);
-        console.log("Text:", options.text);
-        console.log("============================");
-        return Promise.resolve();
+    console.log("[EmailService] RESEND_API_KEY not configured — using console fallback.");
+    resend = {
+      emails: {
+        send: async (options) => {
+          console.log("=== EMAIL (DEV FALLBACK) ===");
+          console.log("To:", options.to);
+          console.log("Subject:", options.subject);
+          console.log("Text:", options.text);
+          console.log("============================");
+          return { data: { id: "dev-fallback" }, error: null };
+        }
       }
     };
   }
 
-  return transporter;
+  return resend;
 }
 
 async function sendOtpEmail(to, otp) {
-  const from = process.env.EMAIL_FROM || "no-reply@nuthub.local";
+  const from = process.env.EMAIL_FROM || "NutHub <onboarding@resend.dev>";
 
   const mailOptions = {
     from,
@@ -76,14 +62,17 @@ async function sendOtpEmail(to, otp) {
     `
   };
 
-  console.log("[EmailService] Sending OTP email to:", to);
+  console.log("[EmailService] Sending OTP email via Resend to:", to);
   try {
-    const t = getTransporter();
-    const info = await t.sendMail(mailOptions);
-    console.log("[EmailService] Email sent successfully! MessageID:", info?.messageId);
+    const client = getResendClient();
+    const { data, error } = await client.emails.send(mailOptions);
+    if (error) {
+      console.error("[EmailService] Resend API error:", error);
+      throw new Error(error.message || "Failed to send email");
+    }
+    console.log("[EmailService] Email sent successfully! ID:", data?.id);
   } catch (err) {
     console.error("[EmailService] FAILED to send email:", err.message);
-    console.error("[EmailService] Error code:", err.code);
     throw err;
   }
 }
