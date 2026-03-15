@@ -217,13 +217,25 @@ router.post("/test-email", async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ message: "Email is required" });
     
+    const apiKeySet = !!process.env.ELASTIC_EMAIL_API_KEY;
+    console.log("[Diagnostic] ELASTIC_EMAIL_API_KEY set:", apiKeySet);
     console.log("[Diagnostic] Sending test email to:", email);
     await sendOtpEmail(email, "123456");
-    res.json({ message: "Test email sent successfully! Please check your inbox/spam." });
+    res.json({ message: "Test email sent! Check inbox/spam.", apiKeySet });
   } catch (error) {
     console.error("[Diagnostic] Test email failed:", error);
-    res.status(500).json({ message: "Failed to send test email.", error: error.message });
+    res.status(500).json({ message: "Failed to send test email.", error: error.message, apiKeySet: !!process.env.ELASTIC_EMAIL_API_KEY });
   }
+});
+
+// ENV CHECK (Diagnostic)
+router.get("/env-check", (req, res) => {
+  res.json({
+    elasticEmailKeySet: !!process.env.ELASTIC_EMAIL_API_KEY,
+    elasticEmailKeyLength: process.env.ELASTIC_EMAIL_API_KEY ? process.env.ELASTIC_EMAIL_API_KEY.length : 0,
+    emailFrom: process.env.EMAIL_FROM || "(not set)",
+    nodeEnv: process.env.NODE_ENV || "development"
+  });
 });
 
 module.exports = router;
