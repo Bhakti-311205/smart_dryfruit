@@ -211,4 +211,19 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// TEST EMAIL (Diagnostic)
+router.post("/test-email", async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ message: "Email is required" });
+    
+    console.log("[Diagnostic] Sending test email to:", email);
+    await sendOtpEmail(email, "123456");
+    res.json({ message: "Test email sent successfully! Please check your inbox/spam." });
+  } catch (error) {
+    console.error("[Diagnostic] Test email failed:", error);
+    res.status(500).json({ message: "Failed to send test email.", error: error.message });
+  }
+});
+
 module.exports = router;

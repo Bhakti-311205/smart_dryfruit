@@ -10,6 +10,7 @@ if (apiBaseUrl) {
 
 const axiosClient = axios.create({
   baseURL: apiBaseUrl,
+  timeout: 30000, // 30 seconds
 });
 
 // Add token to requests

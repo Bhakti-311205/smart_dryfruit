@@ -1,30 +1,60 @@
-const sgMail = require("@sendgrid/mail");
+const nodemailer = require("nodemailer");
 
-// Lazy-initialize
-let initialized = false;
+// Lazy-initialize transporter so env vars are guaranteed to be loaded
+let transporter = null;
 
-function initSendGrid() {
-  if (initialized) return true;
+function getTransporter() {
+  if (transporter) return transporter;
 
-  const apiKey = process.env.SENDGRID_API_KEY;
-  if (apiKey && apiKey.startsWith("SG.")) {
-    sgMail.setApiKey(apiKey);
-    initialized = true;
-    console.log("[EmailService] SendGrid API Key initialized.");
-    return true;
+  const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+
+  console.log("[EmailService] Initializing transporter...");
+  console.log("[EmailService] SMTP_HOST:", SMTP_HOST || "(not set)");
+  console.log("[EmailService] SMTP_USER:", SMTP_USER || "(not set)");
+  console.log("[EmailService] SMTP_PASS set:", SMTP_PASS ? `yes (${SMTP_PASS.length} chars)` : "no");
+
+  if (SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS) {
+    const isSecure = Number(SMTP_PORT) === 465;
+    transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: Number(SMTP_PORT),
+      secure: isSecure, // true for 465, false for other ports
+      auth: {
+        user: SMTP_USER,
+        pass: SMTP_PASS
+      },
+      tls: {
+        rejectUnauthorized: false
+      },
+      connectionTimeout: 15000, 
+      greetingTimeout: 15000,
+      socketTimeout: 20000
+    });
+    console.log(`[EmailService] SMTP transporter created (Port: ${SMTP_PORT}, Secure: ${isSecure})`);
   } else {
-    console.log("[EmailService] SendGrid not configured or invalid API key — using console fallback.");
-    return false;
+    // Fallback: log emails to console in development
+    console.log("[EmailService] SMTP not configured — using console fallback.");
+    transporter = {
+      sendMail: async (options) => {
+        console.log("=== EMAIL (DEV FALLBACK) ===");
+        console.log("To:", options.to);
+        console.log("Subject:", options.subject);
+        console.log("Text:", options.text);
+        console.log("============================");
+        return Promise.resolve();
+      }
+    };
   }
+
+  return transporter;
 }
 
 async function sendOtpEmail(to, otp) {
-  const isReady = initSendGrid();
-  const fromEmail = process.env.EMAIL_FROM || "no-reply@nuthub-demo.local";
+  const from = process.env.EMAIL_FROM || '"NutHub" <inbhakti3112@gmail.com>';
 
-  const msg = {
+  const mailOptions = {
+    from,
     to,
-    from: fromEmail,
     subject: "Your NutHub OTP Verification Code",
     text: `Your OTP code is ${otp}. It is valid for 5 minutes.`,
     html: `
@@ -49,26 +79,15 @@ async function sendOtpEmail(to, otp) {
     `
   };
 
-  if (isReady) {
-    console.log("[EmailService] Sending OTP via SendGrid to:", to);
-    try {
-      const response = await sgMail.send(msg);
-      console.log("[EmailService] Email sent successfully via SendGrid! Status:", response[0]?.statusCode);
-    } catch (err) {
-      console.error("[EmailService] FAILED to send email via SendGrid:", err.message);
-      if (err.response) {
-        console.error(err.response.body);
-      }
-      throw err;
-    }
-  } else {
-    // Development fallback
-    console.log("=== EMAIL (DEV FALLBACK) ===");
-    console.log("To:", msg.to);
-    console.log("Subject:", msg.subject);
-    console.log("Text:", msg.text);
-    console.log("============================");
-    return Promise.resolve();
+  console.log("[EmailService] Sending OTP email to:", to);
+  try {
+    const t = getTransporter();
+    const info = await t.sendMail(mailOptions);
+    console.log("[EmailService] Email sent successfully! MessageID:", info?.messageId);
+  } catch (err) {
+    console.error("[EmailService] FAILED to send email:", err.message);
+    console.error("[EmailService] Error code:", err.code);
+    throw err;
   }
 }
 
